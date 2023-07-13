@@ -1,5 +1,9 @@
-const dict = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ' //.split('').reverse().join('')
+const dict = '0123456789abcdefghijklmnopqrstuvwxyz'//.split('').sort(() => Math.random() - 0.5).join('')
+// const key = dict.split('').sort(() => Math.random() - 0.5).join('')
+const key = 'q7clfs8i69y54hk3zmno21ptge0ajbudwvxr'
 const length = 6
+
+
 
 const encode = (n, l) => {
 	return shift(pad(baseX(n), l))
@@ -10,7 +14,7 @@ const decode = (n) => {
 }
 
 const pad = (n, l) => {
-	return (n.length >= l) ? n : pad(dict[0]+n, l)
+	return (n.length >= l-1) ? n : pad(dict[0]+n, l)
 }
 
 const unpad = (n) => {
@@ -32,27 +36,37 @@ const base10 = (n) => {
 }
 
 const shift = (n) => {
-	return n.split('').map((c, i) => {
-		const loc = (dict.indexOf(c) + i)
-		return dict[loc % dict.length]
+	const base = base10(n) % dict.length
+
+	return key[base] + n.split('').map((c, i) => {
+		const offset = dict.indexOf(c) + dict.indexOf(key[i]) + base
+		return dict[offset % dict.length]
 	}).join('')
 }
 
 const unshift = (n) => {
-	return n.split('').map((c, i) => {
-		const loc = (dict.indexOf(c) - i + dict.length)
-	return dict[loc % dict.length]
+	const base = key.indexOf(n[0])
+
+	return n.slice(1).split('').map((c, i) => {
+		const offset = dict.indexOf(c) - dict.indexOf(key[i]) - base + dict.length * 2
+		return dict[offset % dict.length]
 	}).join('')
 }
 
-const reverse = (str) => {
-	return str.split('').reverse().join('')
+const shuffle = (str) => {
+	return str.split('').sort(() => Math.random - 0.5)
 }
 
 
-[...Array(1000).keys()].map(num => console.log(`${num} > ${baseX(num)} > ${pad(baseX(num), length)} > ${encode(num, length)}  > ${unshift(encode(num, length))}  > ${unpad(unshift(encode(num, length)))} > ${decode(encode(num, length))}`))
+const logger = (num) => {
+	console.log(`${num} > ${baseX(num)} > ${pad(baseX(num), length)} > ${encode(num, length)}  > ${unshift(encode(num, length))}  > ${unpad(unshift(encode(num, length)))} > ${decode(encode(num, length))}`)
+}
 
-const num = 3000000000
-console.log(`${num} -> ${encode(num, length)}`)
+//	doesn't work when length is too low
+[...Array(40).keys()].map(num => logger(num+1000000))
 
-console.log(decode('0123VV'))
+logger(933)
+// logger(934)
+// logger(935)
+// logger(936)
+
