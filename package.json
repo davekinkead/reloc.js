@@ -1,7 +1,7 @@
 {
-  "name": "reloc",
+  "name": "Reloc",
   "version": "0.0.1",
-  "description": "",
+  "description": "A a zero dependency library for converting auto incrementing integers into reversable, deterministic, hard-to-guess, short IDs",
   "type": "module",
   "main": "index.js",
   "scripts": {
