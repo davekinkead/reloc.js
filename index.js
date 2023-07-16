@@ -2,7 +2,7 @@
 import { createHash } from 'node:crypto'
 
 const DEFAULT_DICTIONARY = '0123456789abcdefghijklmnopqrstuvwxyz'
-const DEFAULT_MIN_LENGTH = 6
+const DEFAULT_MIN_LENGTH = 5
 const DEFAULT_DOMAIN = 'you-should-specify-a-domain-string-so-your-uids-are-unique-to-you'
 
 /**
