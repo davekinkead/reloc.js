@@ -1,9 +1,11 @@
 {
-  "name": "Reloc",
-  "version": "0.0.1",
+  "name": "@davekinkead/reloc",
+  "version": "0.0.2",
   "description": "A a zero dependency library for converting auto incrementing integers into reversable, deterministic, hard-to-guess, short IDs",
+  "keywords": [ "short IDs", "short-ids", "hashes", "crypto", "reversable"],
   "type": "module",
   "main": "index.js",
+  "types": "./types.d.ts",
   "scripts": {
     "test": "tsc && mocha **/*.test.js",
     "build": "tsc"
@@ -15,5 +17,8 @@
     "@types/node": "^20.4.2",
     "mocha": "^10.2.0",
     "typescript": "^5.1.6"
+  },
+  "directories": {
+    "test": "tests"
   }
 }

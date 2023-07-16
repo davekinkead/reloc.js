@@ -1,7 +1,20 @@
 # 8FV65 - ND8SB - RELOC - 3ND0S - 0FU3M
 
-Reloc is a zero dependency library for converting auto incrementing integers into reversable deterministic hard-to-guess short IDs.
+Reloc is a small zero dependency library (1.44 kB when minified) for converting auto incrementing integers into deterministic, reversable, hard-to-guess, short IDs.
 
+## Installation
+
+Install the node package.
+
+```
+	$ npm i @davekinkead/reloc
+```
+
+Then require it.
+
+```
+	import Reloc from '@davekinkead/reloc'
+```
 
 ## Usage
 
@@ -46,7 +59,6 @@ Or set the minimum ID length (default is 5).  Note that larger lengths are backw
 
 You can even set the alphabet that will be used for encoding (default is base36 lowercase).
 
-
 ```javascript
 
 	const baseJP = new Reloc({ dictionary: 'あかがただなはぱまやらわきぎじちぢにひびぴみゆりを' })
@@ -54,3 +66,5 @@ You can even set the alphabet that will be used for encoding (default is base36 
 	baseJP.decode('やちわきひ')  // => 10027
 
 ```
+
+Copyright 2023 Dave Kinkead. Licensed under MIT.
