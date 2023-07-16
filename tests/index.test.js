@@ -22,7 +22,7 @@ describe('Reloc', function () {
 
 	describe('#unpad()', function () {
 		it('unpads a baseX string', function () {
-			assert.equal(reloc.unpad('00000x7'), 'x7')
+			assert.equal(reloc.unpad('00000x7', opts), 'x7')
 		})
 	})
 
@@ -148,6 +148,8 @@ describe('Reloc', function () {
 			const short = new Reloc({ length: 3 })
 			const long = new Reloc({ length: 10 })
 
+			assert.equal(long.decode('iuk'), 1)
+			assert.equal(short.decode('iuk'), 1)
 			assert.equal(long.decode('iujafxpbrx'), 1)
 			assert.equal(short.decode('iujafxpbrx'), 1)
 		})
@@ -160,6 +162,10 @@ describe('Reloc', function () {
 			const base16 = new Reloc({ dictionary: '0123456789abcdef' })
 			assert.equal(base16.encode(10027), 'fa364')
 			assert.equal(base16.decode('fa364'), 10027)
+
+			const baseJP = new Reloc({ dictionary: 'あかがただなはぱまやらわきぎじちぢにひびぴみゆりを' })
+			assert.equal(baseJP.encode(10027), 'やちわきひ')
+			assert.equal(baseJP.decode('やちわきひ'), 10027)
 		})
 	})
 })

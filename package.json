@@ -1,6 +1,6 @@
 {
   "name": "reloc",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "",
   "type": "module",
   "main": "index.js",
@@ -8,8 +8,8 @@
     "test": "tsc && mocha **/*.test.js",
     "build": "tsc"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Dave Kinkead <dave@kinkead.com.au>",
+  "license": "MIT",
   "devDependencies": {
     "@types/mocha": "^10.0.1",
     "@types/node": "^20.4.2",

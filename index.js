@@ -38,7 +38,7 @@ export default function Reloc (opts) {
 	 * @return {number}
 	 */
 	this.decode = (number) => {
-		return base10(unpad(unshift(number, options)), options)
+		return base10(unpad(unshift(number, options), options), options)
 	}
 }
 
@@ -72,16 +72,19 @@ export const getKey = (domain, dict) => {
  * @return {string}
  */
 export const pad = (number, opts) => {
-	return (number.length >= opts.length - 1) ? number : pad('0' + number, opts)
+	const dict = opts.dictionary
+	return (number.length >= opts.length - 1) ? number : pad(dict[0] + number, opts)
 }
 
 /**
  * Unpads all leading 0s from a string
  * @param {string} number - the baseX number to unpad
+ * @param {import('./types').Options} opts - an options object
  * @return {string}
  */
-export const unpad = (number) => {
-	const regex = new RegExp(`^0+`)
+export const unpad = (number, opts) => {
+	const dict = opts.dictionary
+	const regex = new RegExp(`^${dict[0]}+`)
 	return number.replace(regex, '')
 }
 
